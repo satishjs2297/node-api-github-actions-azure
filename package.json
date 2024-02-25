@@ -1,5 +1,5 @@
 {
-    "name": "multi",
+    "name": "node-api-github-actions-azure",
     "version": "1.0.0",
     "description": "Example of buiding TypeScript with Docker.",
     "main": "build/index.js",
