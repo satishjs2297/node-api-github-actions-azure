@@ -11,6 +11,10 @@ app.get('/ping', (req, res) => {
     res.send('Pong!!! I am active..')
 });
 
+app.get('/date', (req, res) => {
+    res.send('Current Date:: '+ new Date())
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 });
