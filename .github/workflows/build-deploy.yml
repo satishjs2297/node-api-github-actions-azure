@@ -46,3 +46,8 @@ jobs:
       - run: |
           docker build . -t billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
           docker push billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
+      - name: Deploy to Azure AppService
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: node-sample-api
+          images: 'billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}'
