@@ -41,8 +41,8 @@ jobs:
         uses: SeptBlast/docker-login@v1.0.1
         with:
           login-server: billingreviewacr.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
       - run: |
           docker build . -t billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
           docker push billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
