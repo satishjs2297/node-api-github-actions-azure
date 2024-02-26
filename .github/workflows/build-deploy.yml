@@ -1,6 +1,6 @@
 name: Node.js CI
 
-on: [push, workflow_dispatch]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -37,3 +37,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Build & Publish to ACR
+        uses: SeptBlast/docker-login@v1.0.1
+        with:
+          login-server: billingreviewacr.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build . -t billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
+          docker push billingreviewacr.azurecr.io/node-api-github-actions-azure:${{ github.sha }}
